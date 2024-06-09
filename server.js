@@ -65,6 +65,17 @@ app.post('/api/upload', async (req, res) => {
   }
 });
 
+// Fetch all Replays
+app.get('/api/replays', async (req, res) => {
+  try {
+    const replays = await Replay.findAll();
+    res.send(replays);
+  } catch (error) {
+    console.error('Error fetching replays:', error);
+    res.status(500).send('Error fetching replays.');
+  }
+});
+
 // Start Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

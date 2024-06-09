@@ -1,7 +1,8 @@
+// client/src/components/ReplayUpload.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ReplayUpload = () => {
+const ReplayUpload = ({ onUploadSuccess }) => {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
@@ -20,6 +21,7 @@ const ReplayUpload = () => {
         },
       });
       console.log('File uploaded successfully:', response.data);
+      onUploadSuccess(); // Trigger the callback to update the replay list
     } catch (error) {
       console.error('Error uploading file:', error);
     }
